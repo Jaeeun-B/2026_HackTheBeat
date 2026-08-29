@@ -48,7 +48,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   Add `encodePayload(obj)` and `decodePayload(str)` in `src/lib/codec.ts`.
   `Done when:` `node --test tests/codec.test.mjs` passes, covering a round trip of an object containing Korean text, an empty string returning null, and a corrupted string returning null without throwing.
 
-- [ ] **T03 Mission deck as linked pairs**
+- [x] **T03 Mission deck as linked pairs**
   Create `src/data/deck-basic.json` with this exact shape:
   ```
   { "pairs": [ { "pairId": "p01", "a": {"id":"...","text":"...","difficulty":1}, "b": {"id":"...","text":"...","difficulty":1}, "link": "..." } ],
