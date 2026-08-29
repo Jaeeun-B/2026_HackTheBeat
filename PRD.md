@@ -58,7 +58,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   Tone examples for one pair: `a` = "오늘 안에 누군가에게 '너 진짜 대단하다'는 말을 듣기", `b` = "오늘 한 사람을 진심으로 칭찬하기".
   `Done when:` `node -e "const d=require('./src/data/deck-basic.json');if(d.pairs.length!==12)throw 1;if(d.solos.length!==6)throw 2;const ids=[...d.pairs.flatMap(p=>[p.a.id,p.b.id]),...d.solos.map(s=>s.id)];if(ids.length!==30)throw 3;if(new Set(ids).size!==30)throw 4;d.pairs.forEach(p=>{if(!p.link)throw 5})"` exits 0.
 
-- [ ] **T04 Paired assignment**
+- [x] **T04 Paired assignment**
   Add `assign(names[], deck, seed)` in `src/lib/assign.ts`. It returns one entry per guest: `{name, mission, pairId | null, partnerIndex | null}`. Fill the party with whole pairs first, assigning `a` and `b` to two different guests. If the guest count is odd, exactly one guest receives a solo mission with `pairId: null`. If there are more guests than the deck supports, fall back to solo missions rather than failing. The same seed always produces the same assignment.
   `Done when:` `node --test tests/assign.test.mjs` passes, covering: 4 guests yields 2 complete pairs; 5 guests yields 2 pairs and 1 solo; 12 guests yields 6 pairs; no mission id repeats within a party; every non-null `pairId` appears exactly twice; the same seed reproduces the same result.
 
