@@ -105,7 +105,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
 
 ### Optional extras. Only start these if every task above is `[x]`.
 
-- [ ] **T14 Photo capture on reveal (optional)**
+- [x] **T14 Photo capture on reveal (optional)**
   On the reveal screen, after a verdict is recorded, offer "증거 사진 찍기" using a file input with `accept="image/*"` and `capture="environment"`. The image is held in memory as an object URL keyed to that guest, downscaled to at most 800px on the long edge via Canvas, shown as a thumbnail with a remove button. Also offer "샘플 사진 사용" attaching a bundled image from `src/assets/samples/`.
   **Skipping photos must change nothing else**, and the three judging steps must still pass untouched.
   `Done when:` `npm run build` passes, `src/assets/samples/` holds at least four images, and the full reveal flow with zero photos still reaches the result screen.

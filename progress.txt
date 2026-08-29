@@ -12,3 +12,4 @@
 2026-08-29T16:14:30+09:00 | T11 | Handled error and empty states across all screens, removed placeholders, added catch-all route | npm run build passed, grep returned no matches, and corrupted link verification confirmed
 2026-08-29T16:17:06+09:00 | T12 | Applied dark background, blue accent color, added drawn line for pair connections, removed emojis, set body overflow-x-hidden | npm run build passed and verified no horizontal scroll
 2026-08-29T16:18:43+09:00 | T13 | Wrote README.md with judging steps, architecture details, and task mapping table | node -e "const fs=require('fs');..." exited 0
+2026-08-29T16:21:22+09:00 | T14 | Added photo capture intermediate step to Reveal screen with imageScale and photoStore, and added four sample images | npm run build passed and verified full reveal flow still reaches result screen without photos

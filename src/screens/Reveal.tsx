@@ -4,6 +4,14 @@ import { decodePayload, encodePayload } from '../lib/codec';
 import { assign } from '../lib/assign';
 import { getPartnerConnection } from '../lib/pairing';
 import deckBasic from '../data/deck-basic.json';
+import { photoStore } from '../lib/photoStore';
+import { processImageFile } from '../lib/imageScale';
+
+import sample1 from '../assets/samples/sample1.png';
+import sample2 from '../assets/samples/sample2.png';
+import sample3 from '../assets/samples/sample3.png';
+import sample4 from '../assets/samples/sample4.png';
+const SAMPLES = [sample1, sample2, sample3, sample4];
 
 export default function Reveal() {
   const { payload } = useParams<{ payload: string }>();
@@ -21,6 +29,8 @@ export default function Reveal() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [results, setResults] = useState<boolean[]>([]);
+  const [showPhotoStep, setShowPhotoStep] = useState(false);
+  const [, setPhotoTrigger] = useState(0);
 
   if (!data || !data.g || data.g.length === 0) {
     return (
@@ -36,14 +46,17 @@ export default function Reveal() {
     const newResults = [...results];
     newResults[currentIndex] = success;
     setResults(newResults);
+    setShowPhotoStep(true);
+  };
 
+  const handleNextGuest = () => {
+    setShowPhotoStep(false);
     if (currentIndex + 1 >= assignments.length) {
-      // Go to result screen
       const resultPayload = {
         p: data.p,
         g: data.g,
         s: data.s,
-        r: newResults,
+        r: results,
         c: data.c
       };
       navigate(`/result/${encodePayload(resultPayload)}`);
@@ -53,14 +66,43 @@ export default function Reveal() {
   };
 
   const handleBack = () => {
-    if (currentIndex > 0) {
+    if (showPhotoStep) {
+      setShowPhotoStep(false);
+    } else if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+      setShowPhotoStep(false);
     }
   };
 
   const current = assignments[currentIndex];
   
   if (!current) return null;
+
+  const handlePhotoCapture = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      try {
+        const url = await processImageFile(file);
+        photoStore.set(current.name, url);
+        setPhotoTrigger(t => t + 1);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
+  const handleSamplePhoto = () => {
+    const sample = SAMPLES[currentIndex % SAMPLES.length];
+    photoStore.set(current.name, sample);
+    setPhotoTrigger(t => t + 1);
+  };
+
+  const handleRemovePhoto = () => {
+    photoStore.delete(current.name);
+    setPhotoTrigger(t => t + 1);
+  };
+
+  const photoUrl = photoStore.get(current.name);
 
   // Check if partner is already revealed
   const conn = getPartnerConnection(assignments, currentIndex);
@@ -111,22 +153,50 @@ export default function Reveal() {
       </div>
 
       <div className="mt-8 flex flex-col gap-3">
-        <div className="flex gap-3">
-          <button
-            onClick={() => handleResult(true)}
-            className="flex-1 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg font-bold text-lg"
-          >
-            성공
-          </button>
-          <button
-            onClick={() => handleResult(false)}
-            className="flex-1 py-4 bg-gray-700 hover:bg-gray-600 rounded-lg font-bold text-lg border border-gray-600"
-          >
-            실패
-          </button>
-        </div>
+        {!showPhotoStep ? (
+          <div className="flex gap-3">
+            <button
+              onClick={() => handleResult(true)}
+              className="flex-1 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg font-bold text-lg"
+            >
+              성공
+            </button>
+            <button
+              onClick={() => handleResult(false)}
+              className="flex-1 py-4 bg-gray-700 hover:bg-gray-600 rounded-lg font-bold text-lg border border-gray-600"
+            >
+              실패
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-3 animate-fade-in">
+            {photoUrl ? (
+              <div className="flex flex-col items-center mb-4">
+                <img src={photoUrl} alt="증거 사진" className="w-32 h-32 object-cover rounded-lg border-2 border-gray-600 mb-2" />
+                <button onClick={handleRemovePhoto} className="text-red-400 text-sm font-bold">사진 삭제</button>
+              </div>
+            ) : (
+              <div className="flex gap-2">
+                <label className="flex-1 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-bold text-center cursor-pointer">
+                  증거 사진 찍기
+                  <input type="file" accept="image/*" capture="environment" className="hidden" onChange={handlePhotoCapture} />
+                </label>
+                <button onClick={handleSamplePhoto} className="flex-1 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-bold">
+                  샘플 사진 사용
+                </button>
+              </div>
+            )}
+            
+            <button
+              onClick={handleNextGuest}
+              className="w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-lg font-bold text-lg mt-2"
+            >
+              다음으로
+            </button>
+          </div>
+        )}
         
-        {currentIndex > 0 && (
+        {(currentIndex > 0 || showPhotoStep) && (
           <button
             onClick={handleBack}
             className="py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-bold"
