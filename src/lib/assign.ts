@@ -40,7 +40,7 @@ function mulberry32(a: number) {
   };
 }
 
-export function assign(names: string[], deck: Deck, seed: string | number): Assignment[] {
+export function assign(names: string[], deck: Deck, seed: string | number, carryOverMissions?: Mission[]): Assignment[] {
   const seedNum = typeof seed === 'string' ? hashString(seed) : seed;
   const random = mulberry32(seedNum);
 
@@ -54,7 +54,6 @@ export function assign(names: string[], deck: Deck, seed: string | number): Assi
   };
 
   const shuffledPairs = shuffle(deck.pairs);
-  const shuffledSolos = shuffle(deck.solos);
 
   const finalAssignments: Assignment[] = names.map((name) => ({
     name,
@@ -65,8 +64,19 @@ export function assign(names: string[], deck: Deck, seed: string | number): Assi
 
   const slots = shuffle(Array.from({ length: names.length }, (_, i) => i));
 
+  // Assign carried over missions first
+  if (carryOverMissions) {
+    const shuffledCarryOver = shuffle([...carryOverMissions]);
+    for (const mission of shuffledCarryOver) {
+      if (slots.length === 0) break;
+      const slot = slots.pop()!;
+      finalAssignments[slot].mission = mission;
+    }
+  }
+
   let pairIndex = 0;
   let soloIndex = 0;
+  const poolSolos = shuffle(deck.solos);
 
   while (slots.length >= 2 && pairIndex < shuffledPairs.length) {
     const slotA = slots.pop()!;
@@ -90,10 +100,10 @@ export function assign(names: string[], deck: Deck, seed: string | number): Assi
   while (slots.length > 0) {
     const slot = slots.pop()!;
     let mission: Mission;
-    if (soloIndex < shuffledSolos.length) {
-      mission = shuffledSolos[soloIndex++];
+    if (soloIndex < poolSolos.length) {
+      mission = poolSolos[soloIndex++];
     } else {
-      mission = shuffledSolos[soloIndex % shuffledSolos.length];
+      mission = poolSolos[soloIndex % poolSolos.length];
       soloIndex++;
     }
     finalAssignments[slot].mission = mission;

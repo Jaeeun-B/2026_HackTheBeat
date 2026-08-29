@@ -1,17 +1,24 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import deckBasic from '../data/deck-basic.json';
 import { assign } from '../lib/assign';
-import { encodePayload } from '../lib/codec';
+import { encodePayload, decodePayload } from '../lib/codec';
 
 export default function Home() {
+  const [searchParams] = useSearchParams();
+  const carryState = useMemo(() => {
+    const c = searchParams.get('c');
+    if (!c) return null;
+    return decodePayload(c);
+  }, [searchParams]);
+
   const [partyName, setPartyName] = useState('');
-  const [guestsInput, setGuestsInput] = useState('');
+  const [guestsInput, setGuestsInput] = useState(carryState?.g ? carryState.g.join('\n') : '');
   const [generated, setGenerated] = useState<{ name: string, link: string }[] | null>(null);
   const [revealLink, setRevealLink] = useState<string>('');
   
   const guests = useMemo(() => {
-    return guestsInput.split(/[\n,]+/).map(g => g.trim()).filter(g => g.length > 0);
+    return guestsInput.split(/[\n,]+/).map((g: string) => g.trim()).filter((g: string) => g.length > 0);
   }, [guestsInput]);
 
   const canCreate = guests.length >= 2;
@@ -21,7 +28,7 @@ export default function Home() {
     
     const seed = Date.now();
     // Generate assignments
-    const assignments = assign(guests, deckBasic as any, seed);
+    const assignments = assign(guests, deckBasic as any, seed, carryState?.f);
     
     // Create guest links
     const guestLinks = assignments.map(a => {
@@ -38,7 +45,8 @@ export default function Home() {
     const hostPayload = {
       p: partyName,
       g: guests,
-      s: seed
+      s: seed,
+      ...(carryState ? { c: carryState } : {})
     };
     const rHash = encodePayload(hostPayload);
     // The reveal link format required by the requirements might be different, but for now we just keep the hash routing.

@@ -3,9 +3,7 @@ import Home from './screens/Home';
 import Mission from './screens/Mission';
 import Reveal from './screens/Reveal';
 
-function Result() {
-  return <div className="p-4 text-white min-h-screen bg-gray-900">Result Screen</div>;
-}
+import Result from './screens/Result';
 
 export default function App() {
   return (

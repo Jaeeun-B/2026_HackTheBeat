@@ -16,7 +16,7 @@ export default function Reveal() {
 
   const assignments = useMemo(() => {
     if (!data || !data.g || !data.s) return [];
-    return assign(data.g, deckBasic as any, data.s);
+    return assign(data.g, deckBasic as any, data.s, data.c?.f);
   }, [data]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,7 +37,8 @@ export default function Reveal() {
         p: data.p,
         g: data.g,
         s: data.s,
-        r: newResults
+        r: newResults,
+        c: data.c
       };
       navigate(`/result/${encodePayload(resultPayload)}`);
     } else {

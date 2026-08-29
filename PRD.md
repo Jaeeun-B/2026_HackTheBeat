@@ -75,7 +75,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   **The connection display is presentational only.** If it cannot render for any reason, the reveal still advances and still reaches the result screen.
   `Done when:` `npm run build` passes, stepping through all four demo guests reaches the result screen, and `node --test tests/pairing.test.mjs` passes verifying that the connection is computed only after both members are revealed.
 
-- [ ] **T08 Result card, connection map and carry-over (evidence for B4)**
+- [x] **T08 Result card, connection map and carry-over (evidence for B4)**
   Show success rate, the guest who cleared the highest difficulty, the list of failed missions, and a simple list of the pairs that completed, each rendered as "A ↔ B — <link line>". Below that:
   1. A copy button for a shareable result link (`#/result/...`), text only.
   2. A **"다음 파티에서 이어하기"** button that opens a new creation screen pre-filled with the same guest list, carrying this party's failed missions into the next pool and carrying the completed pairs forward as a short history (cap the history at the three most recent parties so the link stays short).
