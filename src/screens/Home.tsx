@@ -16,6 +16,7 @@ export default function Home() {
   const [guestsInput, setGuestsInput] = useState(carryState?.g ? carryState.g.join('\n') : '');
   const [generated, setGenerated] = useState<{ name: string, link: string }[] | null>(null);
   const [revealLink, setRevealLink] = useState<string>('');
+  const [selectedDeck, setSelectedDeck] = useState<string>('basic');
   
   const guests = useMemo(() => {
     return guestsInput.split(/[\n,]+/).map((g: string) => g.trim()).filter((g: string) => g.length > 0);
@@ -123,11 +124,53 @@ export default function Home() {
               미션나잇은 혼자서는 시작할 수 없습니다. 임무는 서로 맞물려 있습니다
             </p>
           )}
+
+          <div className="mt-4">
+            <h3 className="text-lg font-bold mb-2">덱 선택</h3>
+            <div className="flex flex-col gap-2">
+              <div 
+                className="p-3 border-2 border-blue-500 bg-gray-800 rounded-lg cursor-pointer flex justify-between items-center"
+                onClick={() => setSelectedDeck('basic')}
+              >
+                <div>
+                  <div className="font-bold">기본 덱</div>
+                  <div className="text-sm text-gray-400">{deckBasic.pairs.length}쌍의 임무</div>
+                </div>
+                <div className="text-blue-400 font-bold">무료</div>
+              </div>
+
+              {[
+                { id: 'yearend', name: '연말 파티덱', pairs: 15 },
+                { id: 'welcome', name: '신입 환영덱', pairs: 12 },
+                { id: 'company', name: '회식덱', pairs: 20 },
+                { id: 'dating', name: '소개팅덱', pairs: 10 }
+              ].map(deck => (
+                <div 
+                  key={deck.id}
+                  className={`p-3 border-2 rounded-lg cursor-pointer flex justify-between items-center ${selectedDeck === deck.id ? 'border-purple-500 bg-gray-800' : 'border-gray-700 bg-gray-800 opacity-70'}`}
+                  onClick={() => setSelectedDeck(deck.id)}
+                >
+                  <div>
+                    <div className="font-bold flex items-center gap-2">
+                      <span>🔒</span> {deck.name}
+                    </div>
+                    <div className="text-sm text-gray-400">{deck.pairs}쌍의 임무</div>
+                  </div>
+                  <div className="text-gray-400">3,900원</div>
+                </div>
+              ))}
+            </div>
+            {selectedDeck !== 'basic' && (
+              <p className="text-purple-400 text-sm mt-3 p-2 bg-gray-800 rounded">
+                출시 예정입니다. 기본 덱으로 시작할 수 있어요
+              </p>
+            )}
+          </div>
           
           <button 
             onClick={handleCreate}
             disabled={!canCreate}
-            className={`p-3 rounded font-bold ${canCreate ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-600 text-gray-400 cursor-not-allowed'}`}
+            className={`p-3 rounded font-bold ${canCreate ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-600 text-gray-400 cursor-not-allowed'} mt-2`}
           >
             링크 생성하기
           </button>

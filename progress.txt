@@ -8,3 +8,4 @@
 2026-08-29T15:52:35+09:00 | T07 | Created Reveal screen with partner connection display logic, extracted pairing logic, and added test | npm run build passed and node --test tests/pairing.test.mjs passed
 2026-08-29T16:02:50+09:00 | T08 | Created Result screen, implemented carry-over state in assign and Home, added result.test.mjs | npm run build passed and node --test tests/result.test.mjs passed
 2026-08-29T16:11:41+09:00 | T09 | Added demo button on Home screen, assigned 4 demo guests for 2 complete pairs, and added hints at the top of all screens | npm run build exited with code 0
+2026-08-29T16:12:44+09:00 | T10 | Added themed deck showcase below base deck on Home screen | npm run build exited with code 0

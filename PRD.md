@@ -85,7 +85,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   A large "5분 데모로 체험하기" button at the top of the home screen. Clicking it immediately creates a four-guest party (민서 / 지호 / 은우 / 하린) assigned as two complete pairs, and shows all four guest links on screen, openable in new tabs. No input of any kind is required. Every screen shows a one-line "what to do now / what happens next" hint at the top.
   `Done when:` `npm run build` passes and home → demo click → four links → guest screen → reveal screen → result screen is reachable without typing anything, and the demo party contains exactly two complete pairs.
 
-- [ ] **T10 Themed deck showcase (evidence for C1)**
+- [x] **T10 Themed deck showcase (evidence for C1)**
   On the creation screen, below the free base deck, list four themed decks as locked cards, each with a name and the price 3,900원: 연말 파티덱, 신입 환영덱, 회식덱, 소개팅덱. Each card shows how many pairs it contains. Selecting one opens an inline notice reading "출시 예정입니다. 기본 덱으로 시작할 수 있어요" and the flow continues with the base deck. No payment integration.
   `Done when:` `npm run build` passes, the four deck names and the price string appear in the rendered creation screen, and selecting a locked deck does not block party creation.
 
