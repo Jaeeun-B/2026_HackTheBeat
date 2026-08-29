@@ -62,7 +62,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   Add `assign(names[], deck, seed)` in `src/lib/assign.ts`. It returns one entry per guest: `{name, mission, pairId | null, partnerIndex | null}`. Fill the party with whole pairs first, assigning `a` and `b` to two different guests. If the guest count is odd, exactly one guest receives a solo mission with `pairId: null`. If there are more guests than the deck supports, fall back to solo missions rather than failing. The same seed always produces the same assignment.
   `Done when:` `node --test tests/assign.test.mjs` passes, covering: 4 guests yields 2 complete pairs; 5 guests yields 2 pairs and 1 solo; 12 guests yields 6 pairs; no mission id repeats within a party; every non-null `pairId` appears exactly twice; the same seed reproduces the same result.
 
-- [ ] **T05 Host creation screen (evidence for B3)**
+- [x] **T05 Host creation screen (evidence for B3)**
   On the home screen, the host enters a party name and guest names, and gets one link per guest, each with a copy button and an open-in-new-tab link, plus a copy-all button. With fewer than two guests the create button is disabled and the screen shows "미션나잇은 혼자서는 시작할 수 없습니다. 임무는 서로 맞물려 있습니다".
   `Done when:` `npm run build` passes and `node --test tests/link.test.mjs` passes, verifying that decoding a generated link hash yields that guest's name and mission **and contains no partner name, partner mission, or link text**.
 

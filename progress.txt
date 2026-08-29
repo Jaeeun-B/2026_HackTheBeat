@@ -2,3 +2,4 @@
 2026-08-29T15:38:28+09:00 | T02 | Added encodePayload and decodePayload to src/lib/codec.ts | node --test tests/codec.test.mjs passed
 2026-08-29T15:40:16+09:00 | T03 | Created src/data/deck-basic.json with 12 paired missions and 6 solo missions in Korean | node -e "const d=require('./src/data/deck-basic.json');..." exited with code 0
 2026-08-29T15:42:00+09:00 | T04 | Created src/lib/assign.ts and tests/assign.test.mjs to implement stable randomized assignment | node --test tests/assign.test.mjs passed
+2026-08-29T15:44:30+09:00 | T05 | Implemented Home screen to generate host and guest links, added link validation test | npm run build passed and node --test tests/link.test.mjs passed

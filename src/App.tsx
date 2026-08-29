@@ -1,12 +1,5 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
-
-function Home() {
-  return (
-    <div className="p-4 text-white min-h-screen bg-gray-900">
-      <h1 className="text-2xl font-bold">미션나잇</h1>
-    </div>
-  );
-}
+import Home from './screens/Home';
 
 function Mission() {
   return <div className="p-4 text-white min-h-screen bg-gray-900">Mission Screen</div>;
