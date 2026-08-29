@@ -104,13 +104,13 @@ export default function Result() {
         {highestDiffGuest && (
           <div className="flex justify-between items-center">
             <span className="text-gray-400">최고 난이도 달성</span>
-            <span className="font-bold text-green-400">{highestDiffGuest}</span>
+            <span className="font-bold text-blue-400">{highestDiffGuest}</span>
           </div>
         )}
       </div>
 
       <div className="mb-6">
-        <h2 className="text-xl font-bold mb-3 text-red-400">실패한 임무</h2>
+        <h2 className="text-xl font-bold mb-3 text-gray-300">실패한 임무</h2>
         {failedMissions.length === 0 ? (
           <div className="text-gray-400 text-sm">모든 임무를 성공했습니다!</div>
         ) : (
@@ -129,9 +129,13 @@ export default function Result() {
         ) : (
           <div className="flex flex-col gap-3">
             {completedPairsList.map((pair, i) => (
-              <div key={i} className="bg-blue-900 p-3 rounded border border-blue-800">
-                <div className="font-bold text-lg mb-1">{pair.a} ↔ {pair.b}</div>
-                <div className="text-sm text-blue-200">{pair.l}</div>
+              <div key={i} className="bg-gray-800 p-3 rounded-lg border border-blue-900">
+                <div className="flex items-center justify-start gap-3 font-bold text-lg mb-2">
+                  <span>{pair.a}</span>
+                  <div className="h-[2px] bg-blue-500 flex-1 max-w-[40px]"></div>
+                  <span>{pair.b}</span>
+                </div>
+                <div className="text-sm text-gray-300">{pair.l}</div>
               </div>
             ))}
           </div>

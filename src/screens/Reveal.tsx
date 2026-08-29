@@ -76,7 +76,7 @@ export default function Reveal() {
   }
 
   return (
-    <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col">
+    <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col max-w-md mx-auto">
       <div className="w-full text-center py-2 bg-gray-800 text-gray-300 text-sm font-medium rounded mb-6">
         호스트는 한 명씩 임무 결과를 확인해주세요
       </div>
@@ -96,12 +96,14 @@ export default function Reveal() {
         </div>
 
         {partnerConnection && (
-          <div className="p-4 bg-blue-900 border border-blue-500 rounded-lg text-center animate-fade-in">
-            <h3 className="text-blue-300 font-bold mb-2">사실, 이 둘은 하나였습니다</h3>
-            <div className="text-xl font-bold mb-2">
-              {partnerConnection.partnerName} ↔ {current.name}
+          <div className="p-4 bg-gray-800 border border-blue-500 rounded-lg text-center animate-fade-in">
+            <h3 className="text-blue-400 font-bold mb-4">사실, 이 둘은 하나였습니다</h3>
+            <div className="flex items-center justify-center gap-3 text-xl font-bold mb-4">
+              <span>{partnerConnection.partnerName}</span>
+              <div className="h-[2px] bg-blue-500 flex-1 max-w-[100px]"></div>
+              <span>{current.name}</span>
             </div>
-            <div className="text-blue-100 break-keep">
+            <div className="text-gray-300 break-keep">
               {partnerConnection.linkText}
             </div>
           </div>
@@ -112,13 +114,13 @@ export default function Reveal() {
         <div className="flex gap-3">
           <button
             onClick={() => handleResult(true)}
-            className="flex-1 py-4 bg-green-600 hover:bg-green-500 rounded-lg font-bold text-lg"
+            className="flex-1 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg font-bold text-lg"
           >
             성공
           </button>
           <button
             onClick={() => handleResult(false)}
-            className="flex-1 py-4 bg-red-600 hover:bg-red-500 rounded-lg font-bold text-lg"
+            className="flex-1 py-4 bg-gray-700 hover:bg-gray-600 rounded-lg font-bold text-lg border border-gray-600"
           >
             실패
           </button>

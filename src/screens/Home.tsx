@@ -94,7 +94,7 @@ export default function Home() {
         <div className="flex flex-col gap-4">
           <button 
             onClick={handleDemo}
-            className="w-full p-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-bold text-lg mb-2"
+            className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold text-lg mb-2"
           >
             5분 데모로 체험하기
           </button>
@@ -145,12 +145,12 @@ export default function Home() {
               ].map(deck => (
                 <div 
                   key={deck.id}
-                  className={`p-3 border-2 rounded-lg cursor-pointer flex justify-between items-center ${selectedDeck === deck.id ? 'border-purple-500 bg-gray-800' : 'border-gray-700 bg-gray-800 opacity-70'}`}
+                  className={`p-3 border-2 rounded-lg cursor-pointer flex justify-between items-center ${selectedDeck === deck.id ? 'border-blue-500 bg-gray-800' : 'border-gray-700 bg-gray-800 opacity-70'}`}
                   onClick={() => setSelectedDeck(deck.id)}
                 >
                   <div>
                     <div className="font-bold flex items-center gap-2">
-                      <span>🔒</span> {deck.name}
+                      <span className="text-gray-500 text-sm border border-gray-500 rounded px-1">잠김</span> {deck.name}
                     </div>
                     <div className="text-sm text-gray-400">{deck.pairs}쌍의 임무</div>
                   </div>
@@ -159,7 +159,7 @@ export default function Home() {
               ))}
             </div>
             {selectedDeck !== 'basic' && (
-              <p className="text-purple-400 text-sm mt-3 p-2 bg-gray-800 rounded">
+              <p className="text-blue-400 text-sm mt-3 p-2 bg-gray-800 rounded">
                 출시 예정입니다. 기본 덱으로 시작할 수 있어요
               </p>
             )}

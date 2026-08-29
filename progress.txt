@@ -10,3 +10,4 @@
 2026-08-29T16:11:41+09:00 | T09 | Added demo button on Home screen, assigned 4 demo guests for 2 complete pairs, and added hints at the top of all screens | npm run build exited with code 0
 2026-08-29T16:12:44+09:00 | T10 | Added themed deck showcase below base deck on Home screen | npm run build exited with code 0
 2026-08-29T16:14:30+09:00 | T11 | Handled error and empty states across all screens, removed placeholders, added catch-all route | npm run build passed, grep returned no matches, and corrupted link verification confirmed
+2026-08-29T16:17:06+09:00 | T12 | Applied dark background, blue accent color, added drawn line for pair connections, removed emojis, set body overflow-x-hidden | npm run build passed and verified no horizontal scroll

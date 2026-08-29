@@ -93,7 +93,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   Handle all of these: a corrupted or truncated link shows an explanation and a link home; the creation screen with zero guests shows guidance; the result screen with no result shows guidance; a party where no pair completed shows a specific empty state rather than a blank section. No route produces a white screen or a console error. Remove all dummy text.
   `Done when:` `npm run build` passes, `grep -rniE "lorem|TODO|placeholder" src/` returns nothing, and visiting `#/m/zzzz` renders the explanation screen.
 
-- [ ] **T12 Design pass**
+- [x] **T12 Design pass**
   Dark background, one accent colour, large type. The mission card flips. The pair connection uses the accent colour and a drawn line between the two names. No horizontal scroll at 375px width. No emoji spam.
   `Done when:` `npm run build` passes and there is no horizontal scroll at 375px width.
 
