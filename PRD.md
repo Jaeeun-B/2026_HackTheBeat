@@ -70,7 +70,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   At `#/m/<payload>`, show the guest's name and their single mission as a card. Tapping "확인했어요" flips the card; it can be flipped back. Below the card, one line of copy hints that the mission may not be self-contained, without revealing anything: "이 임무는 당신 혼자만의 것이 아닐 수도 있습니다".
   `Done when:` `npm run build` passes and the payload type for this screen has no field carrying another guest's name, mission, or the pair link text.
 
-- [ ] **T07 Reveal screen with pair connection (judging step 3)**
+- [x] **T07 Reveal screen with pair connection (judging step 3)**
   At `#/reveal/<payload>`, the host steps through guests one at a time, revealing each mission and recording success or failure. Going back one step is possible. When a guest is revealed whose partner has already been revealed, show a connecting treatment naming both guests and the pair's `link` line, headed "사실, 이 둘은 하나였습니다". A solo guest simply shows their verdict. After the last guest, navigate to the result screen automatically.
   **The connection display is presentational only.** If it cannot render for any reason, the reveal still advances and still reaches the result screen.
   `Done when:` `npm run build` passes, stepping through all four demo guests reaches the result screen, and `node --test tests/pairing.test.mjs` passes verifying that the connection is computed only after both members are revealed.
