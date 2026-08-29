@@ -32,7 +32,8 @@ rm -f "$SENTINEL"
 # Progress metric: completed checkboxes in the task file + current git HEAD
 metric() {
   local checked head
-  checked=$(grep -c '^- \[x\]' "$TASKS" 2>/dev/null || echo 0)
+  checked=$(grep -c '^- \[x\]' "$TASKS" 2>/dev/null | tr -d '\n' || true)
+  [ -z "$checked" ] && checked=0
   head=$(git -C "$REPO" rev-parse --short HEAD 2>/dev/null || echo none)
   echo "${checked}:${head}"
 }
@@ -75,6 +76,11 @@ for i in $(seq 1 "$MAX_ITERS"); do
 
   after="$(metric)"
   echo "--- iter $i done | rc=$rc | after=$after | $(date +%H:%M:%S) ---" | tee -a "$RUNLOG"
+
+  # 배포 반영. 실패해도 루프 판정에 영향을 주지 않는다.
+  if [ "$before" != "$after" ]; then
+    git -C "$REPO" push >/dev/null 2>&1 && echo "    pushed" | tee -a "$RUNLOG" || echo "    push 실패 (무시하고 계속)" | tee -a "$RUNLOG"
+  fi
 
   if [ -f "$SENTINEL" ]; then
     echo "=== ALL TASKS DONE at iter $i ===" | tee -a "$RUNLOG"

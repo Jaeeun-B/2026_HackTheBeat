@@ -44,7 +44,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   **Scaffold non-interactively.** Use `npm create vite@latest . -- --template react-ts` followed by `npm install`. Never run a command that waits for input, opens an editor, or opens a pager. If a tool would prompt, pass the flag that skips the prompt. If the directory is not empty, scaffold in place rather than aborting.
   `Done when:` `npm run build` exits 0 and `dist/index.html` exists.
 
-- [ ] **T02 Codec**
+- [x] **T02 Codec**
   Add `encodePayload(obj)` and `decodePayload(str)` in `src/lib/codec.ts`.
   `Done when:` `node --test tests/codec.test.mjs` passes, covering a round trip of an object containing Korean text, an empty string returning null, and a corrupted string returning null without throwing.
 
