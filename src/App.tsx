@@ -1,9 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './screens/Home';
-
-function Mission() {
-  return <div className="p-4 text-white min-h-screen bg-gray-900">Mission Screen</div>;
-}
+import Mission from './screens/Mission';
 
 function Reveal() {
   return <div className="p-4 text-white min-h-screen bg-gray-900">Reveal Screen</div>;

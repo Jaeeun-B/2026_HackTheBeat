@@ -3,3 +3,5 @@
 2026-08-29T15:40:16+09:00 | T03 | Created src/data/deck-basic.json with 12 paired missions and 6 solo missions in Korean | node -e "const d=require('./src/data/deck-basic.json');..." exited with code 0
 2026-08-29T15:42:00+09:00 | T04 | Created src/lib/assign.ts and tests/assign.test.mjs to implement stable randomized assignment | node --test tests/assign.test.mjs passed
 2026-08-29T15:44:30+09:00 | T05 | Implemented Home screen to generate host and guest links, added link validation test | npm run build passed and node --test tests/link.test.mjs passed
+ | T06 | Created Mission screen with flip card animation and added to App routing | npm run build exited with code 0
+2026-08-29T15:46:30+09:00 | T06 | Created Mission screen with flip card animation and added to App routing | npm run build exited with code 0

@@ -66,7 +66,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   On the home screen, the host enters a party name and guest names, and gets one link per guest, each with a copy button and an open-in-new-tab link, plus a copy-all button. With fewer than two guests the create button is disabled and the screen shows "미션나잇은 혼자서는 시작할 수 없습니다. 임무는 서로 맞물려 있습니다".
   `Done when:` `npm run build` passes and `node --test tests/link.test.mjs` passes, verifying that decoding a generated link hash yields that guest's name and mission **and contains no partner name, partner mission, or link text**.
 
-- [ ] **T06 Guest screen (judging step 2)**
+- [x] **T06 Guest screen (judging step 2)**
   At `#/m/<payload>`, show the guest's name and their single mission as a card. Tapping "확인했어요" flips the card; it can be flipped back. Below the card, one line of copy hints that the mission may not be self-contained, without revealing anything: "이 임무는 당신 혼자만의 것이 아닐 수도 있습니다".
   `Done when:` `npm run build` passes and the payload type for this screen has no field carrying another guest's name, mission, or the pair link text.
 
