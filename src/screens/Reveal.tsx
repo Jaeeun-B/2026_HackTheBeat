@@ -71,6 +71,9 @@ export default function Reveal() {
 
   return (
     <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col">
+      <div className="w-full text-center py-2 bg-gray-800 text-gray-300 text-sm font-medium rounded mb-6">
+        호스트는 한 명씩 임무 결과를 확인해주세요
+      </div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-xl font-bold">결과 확인</h1>
         <div className="text-gray-400">

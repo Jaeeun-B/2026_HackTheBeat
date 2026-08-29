@@ -81,7 +81,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   2. A **"다음 파티에서 이어하기"** button that opens a new creation screen pre-filled with the same guest list, carrying this party's failed missions into the next pool and carrying the completed pairs forward as a short history (cap the history at the three most recent parties so the link stays short).
   `Done when:` `npm run build` passes and `node --test tests/result.test.mjs` passes, verifying the result encoding round trip, that carried-over missions appear in the next assignment, and that the history never exceeds three parties.
 
-- [ ] **T09 Demo mode (judging step 1, highest quality bar)**
+- [x] **T09 Demo mode (judging step 1, highest quality bar)**
   A large "5분 데모로 체험하기" button at the top of the home screen. Clicking it immediately creates a four-guest party (민서 / 지호 / 은우 / 하린) assigned as two complete pairs, and shows all four guest links on screen, openable in new tabs. No input of any kind is required. Every screen shows a one-line "what to do now / what happens next" hint at the top.
   `Done when:` `npm run build` passes and home → demo click → four links → guest screen → reveal screen → result screen is reachable without typing anything, and the demo party contains exactly two complete pairs.
 

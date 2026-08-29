@@ -85,6 +85,9 @@ export default function Result() {
 
   return (
     <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col max-w-md mx-auto">
+      <div className="w-full text-center py-2 bg-gray-800 text-gray-300 text-sm font-medium rounded mb-6">
+        결과를 확인하고 다음 파티를 준비하세요
+      </div>
       <h1 className="text-2xl font-bold mb-6 text-center">{data.p || '파티'} 결과</h1>
       
       <div className="bg-gray-800 p-4 rounded-lg mb-6">

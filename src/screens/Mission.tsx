@@ -27,7 +27,10 @@ export default function Mission() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 py-12">
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 py-8">
+      <div className="w-full max-w-sm text-center py-2 bg-gray-800 text-gray-300 text-sm font-medium rounded mb-6">
+        당신의 임무를 확인하고 파티를 즐기세요
+      </div>
       <h1 className="text-2xl font-bold mb-8">{data.n}님의 임무</h1>
       
       <div className="relative w-full max-w-sm h-64 [perspective:1000px]">
