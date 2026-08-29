@@ -97,7 +97,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   Dark background, one accent colour, large type. The mission card flips. The pair connection uses the accent colour and a drawn line between the two names. No horizontal scroll at 375px width. No emoji spam.
   `Done when:` `npm run build` passes and there is no horizontal scroll at 375px width.
 
-- [ ] **T13 README**
+- [x] **T13 README**
   At the top: the deployed URL, the demo instruction, and the **three** judging steps as a numbered list. Below that, three sections: `## For the founder judge`, `## For the engineer judge`, `## For the investor judge`. The engineer section explains the serverless architecture, the paired-assignment algorithm, and states that this repository was built by a Ralph loop, citing `progress.txt` and the commit log. At the bottom, a table mapping every completed PRD task to the file that implements it. **Do not write about any feature that is not implemented.** If T14 and T15 are unchecked, do not mention photos or recap anywhere.
   `Done when:` README.md contains all three section headings, lists exactly three judging steps, and the mapping table has one row per completed task.
 
