@@ -19,9 +19,10 @@ export default function Mission() {
 
   if (!data || !data.n || !data.m) {
     return (
-      <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col items-center justify-center">
-        <p className="mb-4">잘못된 링크입니다.</p>
-        <Link to="/" className="text-blue-400 underline">홈으로</Link>
+      <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col items-center justify-center text-center">
+        <p className="mb-2 text-xl font-bold">링크가 손상되었습니다</p>
+        <p className="mb-6 text-gray-400">전달받은 링크가 끊겼거나 잘못된 주소입니다. 링크 전체를 다시 복사해주세요.</p>
+        <Link to="/" className="px-6 py-2 bg-blue-600 rounded-lg text-white font-bold">홈으로 돌아가기</Link>
       </div>
     );
   }

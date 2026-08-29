@@ -89,7 +89,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   On the creation screen, below the free base deck, list four themed decks as locked cards, each with a name and the price 3,900원: 연말 파티덱, 신입 환영덱, 회식덱, 소개팅덱. Each card shows how many pairs it contains. Selecting one opens an inline notice reading "출시 예정입니다. 기본 덱으로 시작할 수 있어요" and the flow continues with the base deck. No payment integration.
   `Done when:` `npm run build` passes, the four deck names and the price string appear in the rendered creation screen, and selecting a locked deck does not block party creation.
 
-- [ ] **T11 Error and empty states (scored under A4)**
+- [x] **T11 Error and empty states (scored under A4)**
   Handle all of these: a corrupted or truncated link shows an explanation and a link home; the creation screen with zero guests shows guidance; the result screen with no result shows guidance; a party where no pair completed shows a specific empty state rather than a blank section. No route produces a white screen or a console error. Remove all dummy text.
   `Done when:` `npm run build` passes, `grep -rniE "lorem|TODO|placeholder" src/` returns nothing, and visiting `#/m/zzzz` renders the explanation screen.
 

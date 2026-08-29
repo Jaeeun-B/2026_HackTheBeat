@@ -13,6 +13,7 @@ export default function App() {
         <Route path="/m/:payload" element={<Mission />} />
         <Route path="/reveal/:payload" element={<Reveal />} />
         <Route path="/result/:payload" element={<Result />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </HashRouter>
   );

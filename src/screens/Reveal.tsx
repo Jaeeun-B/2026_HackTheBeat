@@ -23,7 +23,13 @@ export default function Reveal() {
   const [results, setResults] = useState<boolean[]>([]);
 
   if (!data || !data.g || data.g.length === 0) {
-    return <div className="p-4 text-white min-h-screen bg-gray-900">잘못된 링크입니다.</div>;
+    return (
+      <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col items-center justify-center text-center">
+        <p className="mb-2 text-xl font-bold">링크가 손상되었습니다</p>
+        <p className="mb-6 text-gray-400">결과 확인 링크가 끊겼거나 잘못된 주소입니다. 호스트가 생성한 링크 전체를 다시 복사해주세요.</p>
+        <a href="#/" className="px-6 py-2 bg-blue-600 rounded-lg text-white font-bold">홈으로 돌아가기</a>
+      </div>
+    );
   }
 
   const handleResult = (success: boolean) => {

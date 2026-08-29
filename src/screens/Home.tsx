@@ -105,7 +105,6 @@ export default function Home() {
               className="w-full p-2 bg-gray-800 rounded border border-gray-700 text-white"
               value={partyName}
               onChange={e => setPartyName(e.target.value)}
-              placeholder="예: 연말 파티"
             />
           </div>
           <div>
@@ -115,13 +114,12 @@ export default function Home() {
               rows={4}
               value={guestsInput}
               onChange={e => setGuestsInput(e.target.value)}
-              placeholder="민서, 지호, 은우..."
             />
           </div>
           
-          {guests.length > 0 && !canCreate && (
+          {!canCreate && (
             <p className="text-red-400 text-sm">
-              미션나잇은 혼자서는 시작할 수 없습니다. 임무는 서로 맞물려 있습니다
+              미션나잇은 혼자서는 시작할 수 없습니다. 최소 2명 이상의 참가자를 입력해주세요.
             </p>
           )}
 

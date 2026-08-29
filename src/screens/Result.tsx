@@ -19,7 +19,13 @@ export default function Result() {
   }, [data]);
 
   if (!data || !data.g || data.g.length === 0 || !data.r) {
-    return <div className="p-4 text-white min-h-screen bg-gray-900">결과가 없습니다.</div>;
+    return (
+      <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col items-center justify-center text-center">
+        <p className="mb-2 text-xl font-bold">결과를 찾을 수 없습니다</p>
+        <p className="mb-6 text-gray-400">파티 결과 데이터가 없거나 링크가 손상되었습니다.</p>
+        <Link to="/" className="px-6 py-2 bg-blue-600 rounded-lg text-white font-bold">홈으로 돌아가기</Link>
+      </div>
+    );
   }
 
   // Calculate success rate
