@@ -3,6 +3,11 @@ import { Link, useSearchParams } from 'react-router-dom';
 import deckBasic from '../data/deck-basic.json';
 import { assign } from '../lib/assign';
 import { encodePayload, decodePayload } from '../lib/codec';
+import { photoStore } from '../lib/photoStore';
+import sample1 from '../assets/samples/sample1.png';
+import sample2 from '../assets/samples/sample2.png';
+import sample3 from '../assets/samples/sample3.png';
+import sample4 from '../assets/samples/sample4.png';
 
 export default function Home() {
   const [searchParams] = useSearchParams();
@@ -61,6 +66,11 @@ export default function Home() {
     const demoGuests = ["민서", "지호", "은우", "하린"];
     const seed = Date.now();
     const assignments = assign(demoGuests, deckBasic as any, seed, []);
+    
+    const SAMPLES = [sample1, sample2, sample3, sample4];
+    demoGuests.forEach((g, i) => {
+      photoStore.set(g, SAMPLES[i]);
+    });
     
     const guestLinks = assignments.map(a => {
       const guestPayload = { n: a.name, m: a.mission };

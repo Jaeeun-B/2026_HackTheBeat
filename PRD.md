@@ -110,7 +110,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
   **Skipping photos must change nothing else**, and the three judging steps must still pass untouched.
   `Done when:` `npm run build` passes, `src/assets/samples/` holds at least four images, and the full reveal flow with zero photos still reaches the result screen.
 
-- [ ] **T15 Recap image (optional)**
+- [x] **T15 Recap image (optional)**
   On the result card, add "리캡 이미지 저장" composing a single portrait PNG on a Canvas: party name and date, one row per guest with photo (or a neutral block), name, mission and verdict, and a marked connection between paired guests. Footer carries the product name. Downloads as `missionnight-recap.png`. In demo mode the bundled samples are pre-attached so a judge with no camera downloads a complete recap.
   `Done when:` `npm run build` passes, `node --test tests/recap.test.mjs` passes verifying a row per guest and the zero-photo case, and README has been updated to mention this feature.
 

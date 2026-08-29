@@ -4,6 +4,8 @@ import { decodePayload, encodePayload } from '../lib/codec';
 import type { Mission } from '../lib/assign';
 import { assign } from '../lib/assign';
 import deckBasic from '../data/deck-basic.json';
+import { generateRecapCanvas } from '../lib/recap';
+import { photoStore } from '../lib/photoStore';
 
 export default function Result() {
   const { payload } = useParams<{ payload: string }>();
@@ -89,6 +91,15 @@ export default function Result() {
 
   const shareLink = `${window.location.origin}${window.location.pathname}#/result/${payload}`;
 
+  const handleDownloadRecap = async () => {
+    const canvas = await generateRecapCanvas(document, data.p, assignments, data.r, photoStore);
+    const url = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'missionnight-recap.png';
+    a.click();
+  };
+
   return (
     <div className="p-4 text-white min-h-screen bg-gray-900 flex flex-col max-w-md mx-auto">
       <div className="w-full text-center py-2 bg-gray-800 text-gray-300 text-sm font-medium rounded mb-6">
@@ -143,6 +154,12 @@ export default function Result() {
       </div>
 
       <div className="flex flex-col gap-3 mt-auto">
+        <button 
+          onClick={handleDownloadRecap}
+          className="w-full py-3 bg-purple-600 hover:bg-purple-500 rounded font-bold"
+        >
+          리캡 이미지 저장
+        </button>
         <button 
           onClick={() => navigator.clipboard.writeText(shareLink)}
           className="w-full py-3 bg-gray-700 hover:bg-gray-600 rounded font-bold"

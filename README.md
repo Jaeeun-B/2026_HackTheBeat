@@ -17,7 +17,7 @@ Click "5분 데모로 체험하기" on the home screen, and four guest links app
 ## For the engineer judge
 
 This application is completely serverless. It relies purely on the browser's memory and the URL hash for state management.
-- **Serverless Architecture:** The application uses Vite, React, and TypeScript and builds to static files. There is no database, no authentication, and no external API. All application state—including guests, missions, and reveal results—is encoded directly in the URL hash (using `encodeURIComponent` and `btoa`), which guarantees Korean characters survive the round trip.
+- **Serverless Architecture & Memory Stores:** The application uses Vite, React, and TypeScript and builds to static files. There is no database, no authentication, and no external API. All application state—including guests, missions, and reveal results—is encoded directly in the URL hash (using `encodeURIComponent` and `btoa`), which guarantees Korean characters survive the round trip. The app supports taking photos during the reveal process and composing a visual recap image on a `<canvas>`, utilizing purely browser memory and object URLs without uploading anything to a backend.
 - **Paired-Assignment Algorithm:** The logic in `src/lib/assign.ts` assigns guests to missions. It first pairs up guests and randomly assigns the `a` and `b` parts of a linked mission pair. If the guest count is odd, exactly one guest receives a solo mission. The assignment is deterministic based on a seed, so the same input always yields the same distribution. If there are more guests than the deck supports, it falls back to solo missions rather than failing.
 - **Ralph Loop Generation:** This repository was built by a Ralph loop. You can review the step-by-step progress by reading `progress.txt` and examining the git commit log.
 
@@ -42,3 +42,5 @@ This application is completely serverless. It relies purely on the browser's mem
 | T11 Error and empty states | `src/App.tsx`, `src/screens/Home.tsx`, `src/screens/Mission.tsx`, `src/screens/Reveal.tsx`, `src/screens/Result.tsx` |
 | T12 Design pass | `src/App.css`, `src/index.css`, `src/screens/*.tsx` |
 | T13 README | `README.md` |
+| T14 Photo capture on reveal | `src/screens/Reveal.tsx`, `src/lib/imageScale.ts`, `src/lib/photoStore.ts` |
+| T15 Recap image | `src/screens/Result.tsx`, `src/lib/recap.ts`, `tests/recap.test.mjs` |
