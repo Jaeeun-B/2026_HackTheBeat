@@ -39,7 +39,7 @@ Never make a change that breaks these three steps, for any reason. The pair-reve
 
 ## 4. Tasks
 
-- [ ] **T01 Scaffold**
+- [x] **T01 Scaffold**
   Create a Vite + React + TS + Tailwind project in this directory. Wire hash routing to four empty screens (home / mission / reveal / result). Show the product name "미션나잇" on the home screen.
   **Scaffold non-interactively.** Use `npm create vite@latest . -- --template react-ts` followed by `npm install`. Never run a command that waits for input, opens an editor, or opens a pager. If a tool would prompt, pass the flag that skips the prompt. If the directory is not empty, scaffold in place rather than aborting.
   `Done when:` `npm run build` exits 0 and `dist/index.html` exists.
